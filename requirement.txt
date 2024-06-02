@@ -1,0 +1,14 @@
+fastapi==0.95.1
+uvicorn==0.15.0
+PyJWT==1.7.1
+python-decouple==3.3
+passlib==1.7.4
+python-jose==3.3.0
+python-multipart==0.0.6
+mysql-connector-python==8.0.33
+sqlalchemy==1.4.41
+Jinja2==3.1.2
+fastapi-pagination==0.12.3
+fastapi-mail==1.2.7
+pydantic==1.10.7
+pydantic[dotenv]==1.0.0

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', path='/bootstrap.min.css') }}" rel="stylesheet">
+    <title>Edit Blog</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">FastAPI CRUD</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/index">Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/index">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/role/index">Roles</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <h1>Edit Blog <a href="/blog/index/" class="btn btn-success btn-sm pull-right">Blogs</a></h1>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 message">
+            <form class="form-horizontal" method="POST" id="editBlogForm">
+                <input type="hidden" value="{{ data.id }}" id="id" />
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Title:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="{{ data.title }}" name="title" id="title" placeholder="Enter your title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="body" class="col-sm-2 control-label">Body:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="4" name="body" id="body" placeholder="Write something about your blog">{{ data.body }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+         </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{{ url_for('static', path='/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('blog', path='/edit-script.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', path='/bootstrap.min.css') }}" rel="stylesheet">
+    <title>Blogs</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">FastAPI CRUD</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/index">Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/index">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/role/index">Roles</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="message"></div>
+      <h1>Blogs  <a href="/blog/create/" class="btn btn-success btn-sm pull-right">New Blog</a></h1>
+      <table class="table" id="my-table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th class="text-center">User</th>
+            <th class="text-center">Action</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+          {% for d in data.items %}
+              <tr>
+                <td> {{d.title}} </td>
+                <td> {{d.body}} </td>
+                <td class="text-center"> {{d.creator.first_name}} {{d.creator.last_name}} </td>
+                <td class="text-center">
+                  <a href="/blog/view/{{d.id}}" class="btn btn-info btn-sm">Details</a> 
+                  <a href="/blog/edit/{{d.id}}" class="btn btn-primary btn-sm">Edit</a> 
+                  <a href="javascript:void(0);" onclick="deleteBlog({{d.id}});" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        {% if data.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="{{ data.previous_page_number }}" tabindex="-1" >Previous</a>
+        </li>
+        {% endif %}
+        {% for x in range(1, data.pages) %}
+        <li class="page-item {% if data.page == x %} active {% endif %}" aria-current="page">
+          <a class="page-link" href="{{x}}">{{x}}</a>
+        </li>
+        {% endfor %}
+        {% if data.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="{{ data.next_page_number }}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{{ url_for('static', path='/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/bootstrap.min.js') }}"></script>    
+    <script src="{{ url_for('blog', path='/index-script.js') }}"></script>
+  </body>
+</html>
